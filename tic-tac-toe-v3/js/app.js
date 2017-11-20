@@ -41,6 +41,18 @@ function markSpot(spotOnBoard) {
 	}
 }
 
+function hoverSpot(spot) {
+	if (gameBoard.currentPlayer === 'player1') {
+		 spot.style.backgroundImage= "url('img/o.svg')";
+	} else if (gameBoard.currentPlayer === 'player2') {
+		spot.style.backgroundImage= "url('img/x.svg')";	
+	}
+}
+
+function unhoverSpot(spot) {
+		 spot.style.backgroundImage= "";
+}
+
 //setup functions to hide / show stuff
 function hideDiv(div) {
   div.style.display = 'none';
@@ -77,6 +89,78 @@ function addIdToBox () {
 	}
 }
 
+function showZero () {
+	hoverSpot(document.getElementById('box-0'));
+}
+
+function hideZero () {
+	unhoverSpot(document.getElementById('box-0'));
+}
+
+function showOne () {
+	hoverSpot(document.getElementById('box-1'));
+}
+
+function hideOne () {
+	unhoverSpot(document.getElementById('box-1'));
+}
+
+function showTwo () {
+	hoverSpot(document.getElementById('box-2'));
+}
+
+function hideTwo () {
+	unhoverSpot(document.getElementById('box-2'));
+}
+
+function showThree () {
+	hoverSpot(document.getElementById('box-3'));
+}
+
+function hideThree () {
+	unhoverSpot(document.getElementById('box-3'));
+}
+
+function showFour () {
+	hoverSpot(document.getElementById('box-4'));
+}
+
+function hideFour () {
+	unhoverSpot(document.getElementById('box-4'));
+}
+
+function showFive () {
+	hoverSpot(document.getElementById('box-5'));
+}
+
+function hideFive () {
+	unhoverSpot(document.getElementById('box-5'));
+}
+
+function showSix () {
+	hoverSpot(document.getElementById('box-6'));
+}
+
+function hideSix () {
+	unhoverSpot(document.getElementById('box-6'));
+}
+
+function showSeven () {
+	hoverSpot(document.getElementById('box-7'));
+}
+
+function hideSeven () {
+	unhoverSpot(document.getElementById('box-7'));
+}
+
+function showEight () {
+	hoverSpot(document.getElementById('box-8'));
+}
+
+function hideEight () {
+	unhoverSpot(document.getElementById('box-8'));
+}
+
 function makeBoxesClickable () {
   let box0 = document.getElementById('box-0');
   let box1 = document.getElementById('box-1');
@@ -86,50 +170,86 @@ function makeBoxesClickable () {
   let box5 = document.getElementById('box-5');
   let box6 = document.getElementById('box-6');
   let box7 = document.getElementById('box-7');
-  let box8 = document.getElementById('box-8');
+  let box8 = document.getElementById('box-8'); 
+  box0.addEventListener("mouseover", showZero);
+  box0.addEventListener("mouseout", hideZero);
   box0.addEventListener("click", function boxZeroClick () {
     markSpot(box0);
     box0.removeEventListener("click", boxZeroClick);
+    box0.removeEventListener("mouseover", showZero);
+    box0.removeEventListener("mouseout", hideZero);
     switchPlayers();
   });
+  box1.addEventListener("mouseover", showOne);
+  box1.addEventListener("mouseout", hideOne);
   box1.addEventListener("click", function boxOneClick () {
     markSpot(box1);
     box1.removeEventListener("click", boxOneClick);
+    box1.removeEventListener("mouseover", showOne);
+    box1.removeEventListener("mouseout", hideOne);
     switchPlayers();
   });
+  box2.addEventListener("mouseover", showTwo);
+  box2.addEventListener("mouseout", hideTwo);
   box2.addEventListener("click", function boxTwoClick () {
     markSpot(box2);
     box2.removeEventListener("click", boxTwoClick);
+    box2.removeEventListener("mouseover", showTwo);
+    box2.removeEventListener("mouseout", hideTwo);
     switchPlayers();
   });
+  box3.addEventListener("mouseover", showThree);
+  box3.addEventListener("mouseout", hideThree);
   box3.addEventListener("click", function boxThreeClick () {
     markSpot(box3);
     box3.removeEventListener("click", boxThreeClick);
+    box3.removeEventListener("mouseover", showThree);
+    box3.removeEventListener("mouseout", hideThree);
     switchPlayers();
   });
+  box4.addEventListener("mouseover", showFour);
+  box4.addEventListener("mouseout", hideFour);
   box4.addEventListener("click", function boxFourClick () {
     markSpot(box4);
     box4.removeEventListener("click", boxFourClick);
+    box4.removeEventListener("mouseover", showFour);
+    box4.removeEventListener("mouseout", hideFour);
     switchPlayers();
   });
+  box5.addEventListener("mouseover", showFive);
+  box5.addEventListener("mouseout", hideFive);
   box5.addEventListener("click", function boxFiveClick () {
     markSpot(box5);
     box5.removeEventListener("click", boxFiveClick);
+    box5.removeEventListener("mouseover", showFive);
+    box5.removeEventListener("mouseout", hideFive);
     switchPlayers();
   });
+  box6.addEventListener("mouseover", showSix);
+  box6.addEventListener("mouseout", hideSix);
   box6.addEventListener("click", function boxSixClick () {
     markSpot(box6);
     box6.removeEventListener("click", boxSixClick);
+    box6.removeEventListener("mouseover", showSix);
+    box6.removeEventListener("mouseout", hideSix);
     switchPlayers();
   });
+  box7.addEventListener("mouseover", showSeven);
+  box7.addEventListener("mouseout", hideSeven);
   box7.addEventListener("click", function boxSevenClick () {
     markSpot(box7);
     box7.removeEventListener("click", boxSevenClick);
+    box7.removeEventListener("mouseover", showSeven);
+    box7.removeEventListener("mouseout", hideSeven);
     switchPlayers();
   });
+  box8.addEventListener("mouseover", showEight);
+  box8.addEventListener("mouseout", hideEight);
   box8.addEventListener("click", function boxEightClick () {
     markSpot(box8);
     box8.removeEventListener("click", boxEightClick);
+    box8.removeEventListener("mouseover", showEight);
+    box8.removeEventListener("mouseout", hideEight);
     switchPlayers();
   });
 }
