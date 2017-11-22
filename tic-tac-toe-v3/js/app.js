@@ -8,6 +8,23 @@ const startATag = document.createElement('a');
 const player1Li = document.getElementById('player1');
 const player2Li = document.getElementById('player2');
 const boxes = document.getElementsByClassName('box');
+const boxesParent = document.getElementsByClassName('boxes')[0];
+const boxLi0 = document.createElement('li');
+const boxLi1 = document.createElement('li');
+const boxLi2 = document.createElement('li');
+const boxLi3 = document.createElement('li');
+const boxLi4 = document.createElement('li');
+const boxLi5 = document.createElement('li');
+const boxLi6 = document.createElement('li');
+const boxLi7 = document.createElement('li');
+const boxLi8 = document.createElement('li');
+//need something to remove all the click event listeners instead
+const endDiv = document.createElement('div');
+const endHeader = document.createElement('header');
+const endH1 = document.createElement('h1');
+const endP = document.createElement('p');
+const endATag = document.createElement('a');
+const winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 
 
 var gameBoard = {
@@ -24,6 +41,17 @@ var player1 = {
 var player2 = {
 	name: '',
   takenMoves: []
+}
+
+function testWinner () {
+	for (i = 0; i < winningCombos.length; i++) {
+		if (player1.takenMoves.includes(winningCombos[i][0]) && player1.takenMoves.includes(winningCombos[i][1]) && player1.takenMoves.includes(winningCombos[i][2])) {
+      return true;
+		} else if (player2.takenMoves.includes(winningCombos[i][0]) && player2.takenMoves.includes(winningCombos[i][1]) && player2.takenMoves.includes(winningCombos[i][2])) {
+      return true;
+		}
+	}
+	return false;
 }
 
 function markSpot(spotOnBoard) {
@@ -178,6 +206,7 @@ function makeBoxesClickable () {
     box0.removeEventListener("click", boxZeroClick);
     box0.removeEventListener("mouseover", showZero);
     box0.removeEventListener("mouseout", hideZero);
+    checkWinner();
     switchPlayers();
   });
   box1.addEventListener("mouseover", showOne);
@@ -187,6 +216,7 @@ function makeBoxesClickable () {
     box1.removeEventListener("click", boxOneClick);
     box1.removeEventListener("mouseover", showOne);
     box1.removeEventListener("mouseout", hideOne);
+    checkWinner();
     switchPlayers();
   });
   box2.addEventListener("mouseover", showTwo);
@@ -196,6 +226,7 @@ function makeBoxesClickable () {
     box2.removeEventListener("click", boxTwoClick);
     box2.removeEventListener("mouseover", showTwo);
     box2.removeEventListener("mouseout", hideTwo);
+    checkWinner();
     switchPlayers();
   });
   box3.addEventListener("mouseover", showThree);
@@ -205,6 +236,7 @@ function makeBoxesClickable () {
     box3.removeEventListener("click", boxThreeClick);
     box3.removeEventListener("mouseover", showThree);
     box3.removeEventListener("mouseout", hideThree);
+    checkWinner();
     switchPlayers();
   });
   box4.addEventListener("mouseover", showFour);
@@ -214,6 +246,7 @@ function makeBoxesClickable () {
     box4.removeEventListener("click", boxFourClick);
     box4.removeEventListener("mouseover", showFour);
     box4.removeEventListener("mouseout", hideFour);
+    checkWinner();
     switchPlayers();
   });
   box5.addEventListener("mouseover", showFive);
@@ -223,6 +256,7 @@ function makeBoxesClickable () {
     box5.removeEventListener("click", boxFiveClick);
     box5.removeEventListener("mouseover", showFive);
     box5.removeEventListener("mouseout", hideFive);
+    checkWinner();
     switchPlayers();
   });
   box6.addEventListener("mouseover", showSix);
@@ -232,6 +266,7 @@ function makeBoxesClickable () {
     box6.removeEventListener("click", boxSixClick);
     box6.removeEventListener("mouseover", showSix);
     box6.removeEventListener("mouseout", hideSix);
+    checkWinner();
     switchPlayers();
   });
   box7.addEventListener("mouseover", showSeven);
@@ -241,6 +276,7 @@ function makeBoxesClickable () {
     box7.removeEventListener("click", boxSevenClick);
     box7.removeEventListener("mouseover", showSeven);
     box7.removeEventListener("mouseout", hideSeven);
+    checkWinner();
     switchPlayers();
   });
   box8.addEventListener("mouseover", showEight);
@@ -250,8 +286,48 @@ function makeBoxesClickable () {
     box8.removeEventListener("click", boxEightClick);
     box8.removeEventListener("mouseover", showEight);
     box8.removeEventListener("mouseout", hideEight);
+    checkWinner();
     switchPlayers();
   });
+}
+
+function clearBoard () {
+  for (i = 0; i < 9; i ++) {
+    //hideZero();
+    //hideOne();
+    //hideTwo();
+    //hideThree();
+    //hideFour();
+    //hideFive();
+    //hideSix();
+    //hideSeven();
+    //hideEight();
+    gameBoard.availableMoves = [0,1,2,3,4,5,6,7,8];
+    gameBoard.takenMoves = [];
+    player1.takenMoves = [];
+    player2.takenMoves = [];
+    gameBoard.currentPlayer = 'player1';
+    /*
+    boxesParent.appendChild(boxLi0);
+    boxLi0.className = 'box';
+    boxesParent.appendChild(boxLi1);
+    boxLi1.className = 'box';
+    boxesParent.appendChild(boxLi2);
+    boxLi2.className = 'box';
+    boxesParent.appendChild(boxLi3);
+    boxLi3.className = 'box';
+    boxesParent.appendChild(boxLi4);
+    boxLi4.className = 'box';
+    boxesParent.appendChild(boxLi5);
+    boxLi5.className = 'box';
+    boxesParent.appendChild(boxLi6);
+    boxLi6.className = 'box';
+    boxesParent.appendChild(boxLi7);
+    boxLi7.className = 'box';
+    boxesParent.appendChild(boxLi8);
+    boxLi8.className = 'box';
+    */
+  }  
 }
 
 function startGame () {
@@ -266,13 +342,64 @@ function startGame () {
 	startATag.href = "#";
 	startATag.className = "button";
 	startATag.innerHTML = "Start game";
-	startATag.addEventListener("click", function() {
+	startATag.addEventListener("click", function () {
     hideDiv(startDiv);
     showDiv(board);
     addIdToBox();
     player1Active();
-    makeBoxesClickable();
+    makeBoxesClickable();    
   });
+}
+
+function checkWinner () {
+  if (gameBoard.availableMoves.length > 0) {
+    if (testWinner ()) {
+    	hideDiv(board);
+    	body.appendChild(endDiv);
+    	if (gameBoard.currentPlayer = 'player1') {
+    		showDiv(endDiv);
+    	  endDiv.className = "screen screen-win screen-win-one";
+    	  endDiv.id = "finish";
+        endDiv.appendChild(endHeader);
+	      endHeader.appendChild(endH1);
+	      endH1.innerHTML = "Tic Tac Toe";
+	      endHeader.appendChild(endP);
+	      endP.className = "message";
+	      endP.innerHTML = "Winner";
+	      endHeader.appendChild(endATag);
+	      endATag.href = "#";
+	      endATag.className = "button";
+	      endATag.innerHTML = "New game";
+    	  endATag.addEventListener("click", function () {
+          hideDiv(endDiv);
+          clearBoard();
+          showDiv(board);
+          addIdToBox();
+          player1Active();
+          makeBoxesClickable();
+          gameBoard.currentPlayer = 'player1';          
+    	  });	
+    	} else if (gameBoard.currentPlayer = 'player2') {
+    	  endDiv.className = "screen screen-win screen-win-two";
+    	  endDiv.id = "finish";
+    	}
+    } 
+  } else if (gameBoard.availableMoves.length === 0 && testWinner ()) {
+  	  hideDiv(board);
+  	  body.appendChild(endDiv);
+    	if (gameBoard.currentPlayer = 'player1') {
+    	  endDiv.className = "screen screen-win screen-win-one";
+    	  endDiv.id = "finish";	
+    	} else if (gameBoard.currentPlayer = 'player2') {
+    	  endDiv.className = "screen screen-win screen-win-two";
+    	  endDiv.id = "finish";
+    	}
+  } else {
+  	  hideDiv(board);
+  	  body.appendChild(endDiv);
+    	  endDiv.className = "screen screen-win screen-win-tie";
+    	  endDiv.id = "finish";
+  }
 }
 
 startGame();
