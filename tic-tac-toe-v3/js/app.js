@@ -1,5 +1,5 @@
 //wrap everything in an anonymous function to free up the global name space
-(function () {
+//(function () {
   //hide the board 
   const boardDiv = document.getElementById('board');
   const body = document.getElementsByTagName('body')[0];
@@ -23,6 +23,126 @@
     availableMoves: [0,1,2,3,4,5,6,7,8],
     takenMoves: [],
     currentPlayer: 'player1'
+  }
+
+  function addListenersBack () {
+  	for (i = 0; i < 9; i++) {
+  		if (gameBoard.takenMoves.includes(i)) {
+  			makeListener(i);
+  		}
+  	}
+  }
+
+  function makeListener(number) {
+  	if (number === 0) {
+  		let box0 = document.getElementById('box-0');
+  		box0.addEventListener("mouseover", showZero);
+      box0.addEventListener("mouseout", hideZero);
+  		box0.addEventListener("click", function boxZeroClick () {
+        markSpot(box0);
+        checkWinner();
+        switchPlayers();
+        box0.removeEventListener("click", boxZeroClick, false);
+        box0.removeEventListener("mouseover", showZero, false);
+        box0.removeEventListener("mouseout", hideZero, false);
+      });
+  	} else if (number === 1) {
+  		let box1 = document.getElementById('box-1');
+  		box1.addEventListener("mouseover", showOne);
+      box1.addEventListener("mouseout", hideOne);
+  		box1.addEventListener("click", function boxOneClick () {
+        markSpot(box1);
+        checkWinner();
+        switchPlayers();
+        box1.removeEventListener("click", boxOneClick, false);
+        box1.removeEventListener("mouseover", showOne, false);
+        box1.removeEventListener("mouseout", hideOne, false);
+      });
+    } else if (number === 2) {
+  		let box2 = document.getElementById('box-2');
+  		box2.addEventListener("mouseover", showTwo);
+      box2.addEventListener("mouseout", hideTwo);
+  		box2.addEventListener("click", function boxTwoClick () {
+        markSpot(box2);
+        checkWinner();
+        switchPlayers();
+        box2.removeEventListener("click", boxTwoClick, false);
+        box2.removeEventListener("mouseover", showTwo, false);
+        box2.removeEventListener("mouseout", hideTwo, false);
+      });
+    } else if (number === 3) {
+  		let box3 = document.getElementById('box-3');
+  		box3.addEventListener("mouseover", showThree);
+      box3.addEventListener("mouseout", hideThree);
+  		box3.addEventListener("click", function boxThreeClick () {
+        markSpot(box3);
+        checkWinner();
+        switchPlayers();
+        box3.removeEventListener("click", boxThreeClick, false);
+        box3.removeEventListener("mouseover", showThree, false);
+        box3.removeEventListener("mouseout", hideThree, false);
+      });
+    } else if (number === 4) {
+  		let box4 = document.getElementById('box-4');
+  		box4.addEventListener("mouseover", showFour);
+      box4.addEventListener("mouseout", hideFour);
+  		box4.addEventListener("click", function boxFourClick () {
+        markSpot(box4);
+        checkWinner();
+        switchPlayers();
+        box4.removeEventListener("click", boxFourClick, false);
+        box4.removeEventListener("mouseover", showFour, false);
+        box4.removeEventListener("mouseout", hideFour, false);
+      });
+    } else if (number === 5) {
+  		let box5 = document.getElementById('box-5');
+  		box5.addEventListener("mouseover", showFive);
+      box5.addEventListener("mouseout", hideFive);
+  		box5.addEventListener("click", function boxFiveClick () {
+        markSpot(box5);
+        checkWinner();
+        switchPlayers();
+        box5.removeEventListener("click", boxFiveClick, false);
+        box5.removeEventListener("mouseover", showFive, false);
+        box5.removeEventListener("mouseout", hideFive, false);
+      });
+    } else if (number === 6) {
+  		let box6 = document.getElementById('box-6');
+  		box6.addEventListener("mouseover", showSix);
+      box6.addEventListener("mouseout", hideSix);
+  		box6.addEventListener("click", function boxSixClick () {
+        markSpot(box6);
+        checkWinner();
+        switchPlayers();
+        box6.removeEventListener("click", boxSixClick, false);
+        box6.removeEventListener("mouseover", showSix, false);
+        box6.removeEventListener("mouseout", hideSix, false);
+      });
+    } else if (number === 7) {
+  		let box7 = document.getElementById('box-7');
+  		box7.addEventListener("mouseover", showSeven);
+      box7.addEventListener("mouseout", hideSeven);
+  		box7.addEventListener("click", function boxSevenClick () {
+        markSpot(box7);
+        checkWinner();
+        switchPlayers();
+        box7.removeEventListener("click", boxSevenClick, false);
+        box7.removeEventListener("mouseover", showSeven, false);
+        box7.removeEventListener("mouseout", hideSeven, false);
+      });
+    } else if (number === 8) {
+  		let box8 = document.getElementById('box-8');
+  		box8.addEventListener("mouseover", showEight);
+      box8.addEventListener("mouseout", hideEight);
+  		box8.addEventListener("click", function boxEightClick () {
+        markSpot(box8);
+        checkWinner();
+        switchPlayers();
+        box8.removeEventListener("click", boxEightClick, false);
+        box8.removeEventListener("mouseover", showEight, false);
+        box8.removeEventListener("mouseout", hideEight, false);
+      });
+    }  
   }
 
   var player1 = {
@@ -197,6 +317,9 @@
       markSpot(box0);
       checkWinner();
       switchPlayers();
+      box0.removeEventListener("click", boxZeroClick, false);
+      box0.removeEventListener("mouseover", showZero, false);
+      box0.removeEventListener("mouseout", hideZero, false);
     });
     box1.addEventListener("mouseover", showOne);
     box1.addEventListener("mouseout", hideOne);
@@ -204,6 +327,9 @@
       markSpot(box1);
       checkWinner();
       switchPlayers();
+      box1.removeEventListener("click", boxOneClick, false);
+      box1.removeEventListener("mouseover", showOne, false);
+      box1.removeEventListener("mouseout", hideOne, false);
     });
     box2.addEventListener("mouseover", showTwo);
     box2.addEventListener("mouseout", hideTwo);
@@ -211,6 +337,9 @@
       markSpot(box2);
       checkWinner();
       switchPlayers();
+      box2.removeEventListener("click", boxTwoClick, false);
+      box2.removeEventListener("mouseover", showTwo, false);
+      box2.removeEventListener("mouseout", hideTwo, false);
     });
     box3.addEventListener("mouseover", showThree);
     box3.addEventListener("mouseout", hideThree);
@@ -218,6 +347,9 @@
       markSpot(box3);
       checkWinner();
       switchPlayers();
+      box3.removeEventListener("click", boxThreeClick, false);
+      box3.removeEventListener("mouseover", showThree, false);
+      box3.removeEventListener("mouseout", hideThree, false);
     });
     box4.addEventListener("mouseover", showFour);
     box4.addEventListener("mouseout", hideFour);
@@ -225,6 +357,9 @@
       markSpot(box4);
       checkWinner();
       switchPlayers();
+      box4.removeEventListener("click", boxFourClick, false);
+      box4.removeEventListener("mouseover", showFour, false);
+      box4.removeEventListener("mouseout", hideFour, false);
     });
     box5.addEventListener("mouseover", showFive);
     box5.addEventListener("mouseout", hideFive);
@@ -232,6 +367,9 @@
       markSpot(box5);
       checkWinner();
       switchPlayers();
+      box5.removeEventListener("click", boxFiveClick, false);
+      box5.removeEventListener("mouseover", showFive, false);
+      box5.removeEventListener("mouseout", hideFive, false);
     });
     box6.addEventListener("mouseover", showSix);
     box6.addEventListener("mouseout", hideSix);
@@ -239,6 +377,9 @@
       markSpot(box6);
       checkWinner();
       switchPlayers();
+      box6.removeEventListener("click", boxSixClick, false);
+      box6.removeEventListener("mouseover", showSix, false);
+      box6.removeEventListener("mouseout", hideSix, false);
     });
     box7.addEventListener("mouseover", showSeven);
     box7.addEventListener("mouseout", hideSeven);
@@ -246,6 +387,9 @@
       markSpot(box7);
       checkWinner();
       switchPlayers();
+      box7.removeEventListener("click", boxSevenClick, false);
+      box7.removeEventListener("mouseover", showSeven, false);
+      box7.removeEventListener("mouseout", hideSeven, false);
     });
     box8.addEventListener("mouseover", showEight);
     box8.addEventListener("mouseout", hideEight);
@@ -253,10 +397,14 @@
       markSpot(box8);
       checkWinner();
       switchPlayers();
+      box8.removeEventListener("click", boxEightClick, false);
+      box8.removeEventListener("mouseover", showEight, false);
+      box8.removeEventListener("mouseout", hideEight, false);
     });
   }
 
   function clearBoard () {
+  	addListenersBack();
     for (i = 0; i < 9; i ++) {
       gameBoard.availableMoves = [0,1,2,3,4,5,6,7,8];
       gameBoard.takenMoves = [];
@@ -265,7 +413,7 @@
       gameBoard.currentPlayer = 'player1';
       boxes[i].className = 'box';
       boxes[i].style = '';
-    }  
+    }
   }
 
   function startGame () {
@@ -438,4 +586,4 @@
   }
 
   startGame();
-}());
+//}());
